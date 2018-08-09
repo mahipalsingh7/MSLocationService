@@ -14,7 +14,7 @@ import UIKit
 //MARK: LOCATION DELEGATE
 protocol LocationDelegate {
     func didLocationIniateUpdating()
-    func didLocationUpdate(success:Bool,lat:Double,lng:Double)
+    func didLocationUpdate(success:Bool, currentLocation: CLLocation)
     func didLocationFailedError(message:String)
 }
 
@@ -85,15 +85,17 @@ class MSLocationService:NSObject,CLLocationManagerDelegate {
     
     //MARK: - Location Delegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        if manager.location == nil {
+            return
+        }
         locationManager.stopUpdatingLocation()
         locationManager.delegate = nil
-        self.delegate?.didLocationUpdate(success: true, lat: locValue.latitude, lng: locValue.longitude)
+        self.delegate?.didLocationUpdate(success: true, currentLocation: manager.location!)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
         checkService()
-        self.delegate?.didLocationFailedError(message: "ALERT_MESSAGE.FAILED_TO_GET_LOCATION")
+        self.delegate?.didLocationFailedError(message: "ALERT_MESSAGE_FAILED_TO_GET_LOCATION")
     }
 }
