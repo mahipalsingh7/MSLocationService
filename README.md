@@ -3,6 +3,14 @@
 
 ##How to Use
 
+include Keys in Info-Plist
+1.  Privacy - Location Always Usage Description
+2.  Privacy - Location Always and When In Use Usage Description
+3.  Privacy - Location When In Use Usage Description
+4.  Privacy - Location Usage Description
+
+
+
 ```
 //Paste this lines and method where you want and Fetch lat/lng
 LocationService.shared.delegate = self //Use Delegate For return Response in Any Class
