@@ -17,17 +17,18 @@ LocationService.shared.delegate = self //Use Delegate For return Response in Any
 LocationService.shared.enableLoc() //Call This Method Fetch location from any Class
 
 //MARK: - LOCATION SERVICES DELEGATE
-func didLocationIniateUpdating() {
-    // When Location will iniate for Updating
- //Show loading or other stuff on iniating location service
-}
+extension YourViewController : LocationDelegate {
+    func didLocationIniateUpdating() {
+        // When Location will iniate for Updating
+        //Show loading or other stuff on iniating location service
+    }
 
-func didLocationUpdate(success: Bool,lat:Double,lng:Double) {
-    //Get Your Lat/lng with success
-}
+    func didLocationUpdate(success: Bool,currentLocation:CLLocation) {
+        //Get Your Lat/lng with success
+    }
 
-func didLocationFailedError(message: String) {
-    //show error If any
+    func didLocationFailedError(message: String) {
+        //show error If any
+    }
 }
-
 ```
